@@ -1,8 +1,16 @@
 body {
 	background-color: #D0CCD0;
+	font-family: 'Raleway', sans-serif;
+}
+
+.pagecontainer {
+	max-width: 80%;
+	margin: auto;
+	text-align: center;
 }
 
 .productCard {
+	display: inline-block;
 	max-width: 40%;
 	background-color: #FBFCFF;
 	color: #1C6E8C;
@@ -10,3 +18,4 @@ body {
 	margin: 20px;
 	border-radius: 4px;
 }
+
