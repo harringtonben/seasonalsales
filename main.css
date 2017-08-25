@@ -1,3 +1,12 @@
 body {
-	background-color: red;
+	background-color: #D0CCD0;
+}
+
+.productCard {
+	max-width: 40%;
+	background-color: #FBFCFF;
+	color: #1C6E8C;
+	padding: 5px;
+	margin: 20px;
+	border-radius: 4px;
 }

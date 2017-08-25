@@ -6,19 +6,14 @@ var dropDown = document.getElementById('dropdown');
 var slectedDiscount;
 
 function productsJSONConvert() {
-	// console.log("this", this.responseText);
 	var data = JSON.parse(this.responseText);
 	productArray = data.products;
-	// console.log(productArray);
 	printProducts(productArray);	
 }
 
 function categoriesJSONConvert() {
-	// console.log("this", this.responseText);
 	var data = JSON.parse(this.responseText);
 	categoryArray = data.categories;
-	// console.log(productArray);
-	// console.log(categoryArray);
 }
 
 function executeThisCodeIfFileErrors() {
@@ -26,7 +21,6 @@ function executeThisCodeIfFileErrors() {
 }
 
 function printProducts(products) {
-	// console.log(products);
 	var domString = ``;
 	for (var i = 0; i < products.length; i++) {
 		
@@ -39,35 +33,40 @@ function printProducts(products) {
 }
 
 function printToPage(strang){
-	document.getElementById('products').innerHTML += strang;
+	document.getElementById('products').innerHTML = strang;
 }
 
 
 dropDown.addEventListener('change', function(event) {
 	if (event.target.options[1].selected === true) {
+		console.log(event);
 		selectedDiscount = event.target.value;
-		addDiscount(1);
+		addDiscount(1, productArray);
+		console.log(selectedDiscount);
 	} else if (event.target.options[2].selected === true) {
-		addDiscount(2);
 		selectedDiscount = event.target.value;
+		addDiscount(2, productArray);
+		console.log(selectedDiscount);
 	} else if (event.target.options[3].selected === true) {
-		addDiscount(3);
+		addDiscount(3, productArray);
 		selectedDiscount = event.target.value;
+		console.log(selectedDiscount);
 	}
-	// addDiscount();
+
 });
 
-
-
-
-function addDiscount(season) {
-	for (var i = 0; i < productArray.length; i++) {
-		if (season === 1 && productArray[i].category_id === 1) {
-			
-		} else if (season === 2 && productArray[i].category_id === 2) {
-			console.log('discount 2!!');
-		}
+function addDiscount(category, product ) {
+	for (var i = 0; i < product.length; i++) {
+		if (product[i].category_id === category) {
+			// debugger;
+			// console.log(product[i]);
+			var newPrice = product[i].price-(product[i].price*categoryArray[category-1].discount);
+			product[i].price = newPrice;
+			productArray = product;
+		} 
 	}
+
+	printProducts(product);
 }
 
 //call products
@@ -77,11 +76,9 @@ productsRequest.addEventListener("error", executeThisCodeIfFileErrors);
 productsRequest.open("GET", "products.json");
 productsRequest.send();
 
-
 //call categories
 var categoryRequest = new XMLHttpRequest();
 categoryRequest.addEventListener("load", categoriesJSONConvert);
 categoryRequest.addEventListener("error", executeThisCodeIfFileErrors);
 categoryRequest.open("GET", "categories.json");
 categoryRequest.send();
-// console.log(myRequest);
