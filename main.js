@@ -9,6 +9,8 @@ var newProductArray = [];
 function productsJSONConvert() {
 	var data = JSON.parse(this.responseText);
 	productArray = data.products;
+	newProductArray = productArray;
+	// console.log(newProductArray)
 	printProducts(productArray);	
 }
 
@@ -39,7 +41,7 @@ function printToPage(strang){
 
 
 dropDown.addEventListener('change', function(event) {
-	newProductArray = productArray;
+	// printProducts(productArray);
 	if (event.target.options[1].selected === true) {
 		selectedDiscount = event.target.value;
 		addDiscount(1, newProductArray);
