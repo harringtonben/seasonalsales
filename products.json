@@ -3,60 +3,70 @@
     {
       "id": 0,
       "name": "Kids socks",
+      "image": "https://ae01.alicdn.com/kf/HTB1A_TrNFXXXXcWXpXXq6xXFXXXo/1-Lot-4Pair-font-b-Kids-b-font-font-b-Socks-b-font-font-b-Stripes.jpg",
       "price": 4.99,
       "category_id": 1
     },
     {
       "id": 1,
       "name": "Mens socks",
+      "image": "https://cdn.shopify.com/s/files/1/0207/8554/products/Socksmith_Early_Riser_Cool_Mens_Socks_Yellow_IMG_7191f_large.jpg?v=1453328972",
       "price": 6.99,
       "category_id": 1
     },
     {
       "id": 2,
       "name": "Ladies socks",
+      "image": "https://cdn.shopify.com/s/files/1/0569/1997/products/Ozone_Socks_WF1240-52_Iridescent_Scales_Fuschia_280x@2x.jpg?v=1497653277",
       "price": 7.99,
       "category_id": 1
     },
     {
       "id": 3,
       "name": "Foot stool",
+      "image": "https://s-media-cache-ak0.pinimg.com/originals/02/6f/53/026f539c1159c323c4837b4e91c30530.jpg",
       "price": 14.99,
       "category_id": 2
     },
     {
       "id": 4,
       "name": "Lava lamp",
+      "image": "https://i.ytimg.com/vi/3AtBTP0Hf4g/maxresdefault.jpg",
       "price": 9.99,
       "category_id": 2
     },
     {
       "id": 5,
       "name": "3 drawer dresser",
+      "image": "http://www.ikea.com/PIAimages/0519826_PE641789_S5.JPG",
       "price": 64.99,
       "category_id": 2
     },
     {
       "id": 6,
       "name": "Air filter",
+      "image": "http://b.cdnbrm.com/images/products/large/air_intake_systems/airaid_synthamax_air_filters.jpg",
       "price": 6.99,
       "category_id": 3
     },
     {
       "id": 7,
       "name": "Surge protector",
+      "image": "https://i5.walmartimages.com/asr/f5b4cab7-f304-4bb0-8abf-deba70d9f283_1.c81f4eb80c208d54ed312af8e1c12c0e.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF",
       "price": 8.99,
       "category_id": 3
     },
     {
       "id": 8,
       "name": "Plastic storage bin",
+      "image": "https://recyclenation.com/wp-content/uploads/2015/11/plastic-bins.jpg",
       "price": 3.99,
       "category_id": 3
     },
     {
       "id": 9,
       "name": "Light bulb",
+      "image": "http://blogs.discovermagazine.com/d-brief/files/2016/01/shutterstock_133871897.jpg",
       "price": 1.99,
       "category_id": 3
     }

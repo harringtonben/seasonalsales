@@ -10,7 +10,7 @@ body {
 }
 
 .productCard {
-	display: inline-block;
+/*	display: inline-block;*/
 	max-width: 40%;
 	background-color: #FBFCFF;
 	color: #1C6E8C;
@@ -19,3 +19,11 @@ body {
 	border-radius: 4px;
 }
 
+.heading {
+	color: #1C6E8C;
+}
+
+.pics {
+	width: 200px;
+	height: 200px;
+}
