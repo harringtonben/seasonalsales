@@ -1,25 +1,34 @@
-console.log('in main js');
-
 var productArray = [];
 var categoryArray = [];
 var dropDown = document.getElementById('dropdown');
 var slectedDiscount;
-var newProductArray = [];
 
 function categoriesJSONConvert() {
 	var data = JSON.parse(this.responseText);
 	categoryArray = data.categories;
+	productsRequest.send();
 }
 
 function productsJSONConvert() {
 	var data = JSON.parse(this.responseText);
 	productArray = data.products;
 	addNewProduct(productArray);
-	printProducts(productArray);	
+	addCategory(productArray);
+	printProducts(productArray);		
 }
 
 function executeThisCodeIfFileErrors() {
 	console.log("shit broke");
+}
+
+function addCategory(products){
+	products.forEach(function(products){
+		for (var i = 0; i < categoryArray.length; i++) {
+			if (categoryArray[i].id === products.category_id){
+				products.categoryName = categoryArray[i].name;
+			}
+		}
+	});
 }
 
 function addNewProduct(products) {
@@ -35,6 +44,7 @@ function printProducts(products) {
 		domString += `<div class="productCard">
 					   <img class="pics" src="${products[i].image}">
 					   <h1>${products[i].name}</h1>
+					   <h3>${products[i].categoryName}</h3>
 					   <h3>${products[i].displayPrice}</h3>
 					  </div>`;
 	}
@@ -76,7 +86,7 @@ var productsRequest = new XMLHttpRequest();
 productsRequest.addEventListener("load", productsJSONConvert);
 productsRequest.addEventListener("error", executeThisCodeIfFileErrors);
 productsRequest.open("GET", "products.json");
-productsRequest.send();
+
 
 //call categories
 var categoryRequest = new XMLHttpRequest();
