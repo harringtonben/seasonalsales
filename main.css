@@ -1,5 +1,6 @@
 body {
 	background-color: #D0CCD0;
+	background-image: url(https://s-media-cache-ak0.pinimg.com/originals/9a/6f/fa/9a6ffa86d8b8837fc49cde455c7fd27d.jpg);
 	font-family: 'Raleway', sans-serif;
 }
 
@@ -7,6 +8,12 @@ body {
 	max-width: 80%;
 	margin: auto;
 	text-align: center;
+}
+
+#products {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .productCard {
@@ -17,6 +24,7 @@ body {
 	padding: 5px;
 	margin: 20px;
 	border-radius: 4px;
+	box-shadow: 0 3px 10px #605856;
 }
 
 .heading {
