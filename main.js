@@ -1,34 +1,49 @@
 var productArray = [];
 var categoryArray = [];
 var dropDown = document.getElementById('dropdown');
-var slectedDiscount;
-
-function categoriesJSONConvert() {
-	var data = JSON.parse(this.responseText);
-	categoryArray = data.categories;
-	productsRequest.send();
-}
 
 function productsJSONConvert() {
-	var data = JSON.parse(this.responseText);
-	productArray = data.products;
-	addNewProduct(productArray);
-	addCategory(productArray);
-	printProducts(productArray);		
+	var productData = JSON.parse(this.responseText).products;
+	callCategories(productData);			
 }
 
 function executeThisCodeIfFileErrors() {
 	console.log("shit broke");
 }
 
-function addCategory(products){
+//call products
+var productsRequest = new XMLHttpRequest();
+productsRequest.addEventListener("load", productsJSONConvert);
+productsRequest.addEventListener("error", executeThisCodeIfFileErrors);
+productsRequest.open("GET", "products.json");
+productsRequest.send();
+
+//call categories
+function callCategories(products) {
+var categoryRequest = new XMLHttpRequest();
+categoryRequest.addEventListener("load", categoriesJSONConvert);
+categoryRequest.addEventListener("error", executeThisCodeIfFileErrors);
+categoryRequest.open("GET", "categories.json");
+categoryRequest.send();
+
+	function categoriesJSONConvert() {
+	var categoryData = JSON.parse(this.responseText).categories;
+	productArray = products;
+	categoryArray = categoryData;
+	addCategory(products,categoryData);
+	}
+}
+
+function addCategory(products,categories){
 	products.forEach(function(products){
-		for (var i = 0; i < categoryArray.length; i++) {
-			if (categoryArray[i].id === products.category_id){
-				products.categoryName = categoryArray[i].name;
+		for (var i = 0; i < categories.length; i++) {
+			if (categories[i].id === products.category_id){
+				products.categoryName = categories[i].name;
 			}
 		}
 	});
+	addNewProduct(products);
+	printProducts(products);
 }
 
 function addNewProduct(products) {
@@ -66,31 +81,17 @@ dropDown.addEventListener('change', function(event) {
 });
 
 function addDiscount(category, product ) {
-	console.log(product);
+	// console.log(product);
 	for (var i = 0; i < product.length; i++) {
 		product[i].displayPrice = product[i].price;
 		if (product[i].category_id === category) {
 			var newPrice = product[i].price-(product[i].price*categoryArray[category-1].discount);
 			newPrice = newPrice.toFixed(2);
 			product[i].displayPrice = newPrice;
-			console.log(product[i]);
+			// console.log(product[i]);
 		} 
 	}
 	productArray = product;
-	console.log(productArray);
+	// console.log(productArray);
 	printProducts(productArray);
 }
-
-//call products
-var productsRequest = new XMLHttpRequest();
-productsRequest.addEventListener("load", productsJSONConvert);
-productsRequest.addEventListener("error", executeThisCodeIfFileErrors);
-productsRequest.open("GET", "products.json");
-
-
-//call categories
-var categoryRequest = new XMLHttpRequest();
-categoryRequest.addEventListener("load", categoriesJSONConvert);
-categoryRequest.addEventListener("error", executeThisCodeIfFileErrors);
-categoryRequest.open("GET", "categories.json");
-categoryRequest.send();
