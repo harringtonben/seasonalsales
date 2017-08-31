@@ -1,9 +1,6 @@
 var productArray = [];
 var categoryArray = [];
 var dropDown = document.getElementById('dropdown');
-var slectedDiscount;
-
-
 
 function productsJSONConvert() {
 	var productData = JSON.parse(this.responseText).products;
@@ -31,7 +28,8 @@ categoryRequest.send();
 
 	function categoriesJSONConvert() {
 	var categoryData = JSON.parse(this.responseText).categories;
-	// console.log(products, categoryData);
+	productArray = products;
+	categoryArray = categoryData;
 	addCategory(products,categoryData);
 	}
 }
@@ -72,28 +70,28 @@ function printToPage(strang){
 	document.getElementById('products').innerHTML = strang;
 }
 
-// dropDown.addEventListener('change', function(event) {
-// 	if (event.target.options[1].selected === true) {
-// 		addDiscount(1, productArray);
-// 	} else if (event.target.options[2].selected === true) {
-// 		addDiscount(2, productArray);
-// 	} else if (event.target.options[3].selected === true) {
-// 		addDiscount(3, productArray);
-// 	}
-// });
+dropDown.addEventListener('change', function(event) {
+	if (event.target.options[1].selected === true) {
+		addDiscount(1, productArray);
+	} else if (event.target.options[2].selected === true) {
+		addDiscount(2, productArray);
+	} else if (event.target.options[3].selected === true) {
+		addDiscount(3, productArray);
+	}
+});
 
-// function addDiscount(category, product ) {
-// 	console.log(product);
-// 	for (var i = 0; i < product.length; i++) {
-// 		product[i].displayPrice = product[i].price;
-// 		if (product[i].category_id === category) {
-// 			var newPrice = product[i].price-(product[i].price*categoryArray[category-1].discount);
-// 			newPrice = newPrice.toFixed(2);
-// 			product[i].displayPrice = newPrice;
-// 			console.log(product[i]);
-// 		} 
-// 	}
-// 	productArray = product;
-// 	console.log(productArray);
-// 	printProducts(productArray);
-// }
+function addDiscount(category, product ) {
+	// console.log(product);
+	for (var i = 0; i < product.length; i++) {
+		product[i].displayPrice = product[i].price;
+		if (product[i].category_id === category) {
+			var newPrice = product[i].price-(product[i].price*categoryArray[category-1].discount);
+			newPrice = newPrice.toFixed(2);
+			product[i].displayPrice = newPrice;
+			// console.log(product[i]);
+		} 
+	}
+	productArray = product;
+	// console.log(productArray);
+	printProducts(productArray);
+}
